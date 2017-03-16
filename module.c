@@ -6,13 +6,14 @@ static PyObject* pytz_utc;
 
 static PyObject* _parse(PyObject* self, PyObject* args, int parse_tzinfo)
 {
+    PyErr_Clear();
     PyObject *obj;
     char* str = NULL;
     char* c;
     int year = 0, month = 0, day = 0, hour = 0, minute = 0, second = 0, usecond = 0, i = 0;
     int aware = 0; // 1 if aware
     int tzhour = 0, tzminute = 0, tzsign = 0;
- 
+
     if (!PyArg_ParseTuple(args, "s", &str))
         return NULL;
     c = str;
@@ -262,12 +263,12 @@ static PyObject* parse_datetime_unaware(PyObject* self, PyObject* args)
 {
     return _parse(self, args, 0);
 }
- 
+
 static PyObject* parse_datetime(PyObject* self, PyObject* args)
 {
     return _parse(self, args, 1);
 }
- 
+
 static PyMethodDef CISO8601Methods[] =
 {
      {"parse_datetime", parse_datetime, METH_VARARGS, "Parse a ISO8601 date time string."},
