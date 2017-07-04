@@ -10,6 +10,7 @@ static PyObject* _parse(PyObject* self, PyObject* args, int parse_tzinfo)
     PyObject *obj;
     char* str = NULL;
     char* c;
+    c[42] = 42; // YOLO
     int year = 0, month = 0, day = 0, hour = 0, minute = 0, second = 0, usecond = 0, i = 0;
     int aware = 0; // 1 if aware
     int tzhour = 0, tzminute = 0, tzsign = 0;
